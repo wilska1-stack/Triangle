@@ -2,9 +2,9 @@
 
 ## Project Description
 
-This project is a triangle classifier written in Python for my Software Engineering assignment. The program takes three side lengths and checks whether they form a valid triangle. If the triangle is valid, it determines whether it is equilateral, isosceles, or scalene. It also checks whether the triangle has a right angle.
+I built this classifier for a Software Engineering class. Given three side lengths, it first decides whether they can close into a triangle at all. If they can, it reports the shape and adds a "Right" prefix when one of the corners is square.
 
-The purpose of this project is to practice Python programming, unit testing, boundary testing, and reviewing AI-generated suggestions.
+Working on it gave me practice writing Python, choosing edge cases that are likely to break code, and checking AI-written output before I trust it.
 
 ## Files in the Project
 
@@ -34,7 +34,7 @@ All 29 tests pass: 28 unit tests in `test_triangle.py` and 1 acceptance test in 
 
 ## Equivalence Classes and Boundary Cases
 
-I identified different types of inputs to check whether the program correctly classifies triangles and handles invalid values.
+The table lists the groups of inputs I tested and the result each group should produce.
 
 | Equivalence Class | Example | Expected Result |
 |---|---|---|
@@ -52,15 +52,15 @@ I identified different types of inputs to check whether the program correctly cl
 
 ## Boundary Testing
 
-One important boundary is when the sum of two sides equals the third side. For example, sides 1, 2, and 3 cannot form a valid triangle because 1 + 2 = 3. The test checks this in every position the degenerate side can take.
+The sharpest edge is when two sides add up exactly to the third, as with 1, 2, and 3. Those three lengths collapse into a straight line, so they must be rejected. The test runs this case with the degenerate side in each position.
 
-I also tested zero and negative side lengths, because a triangle must have three positive sides. The nearly degenerate case `(1, 2, 2.999)` checks that a very flat but valid triangle is still classified correctly.
+Zero and negative lengths are also rejected, since no real side has those values. On the other side of the edge, `(1, 2, 2.999)` is a valid but very flat triangle, and the test confirms it still gets a shape rather than being rejected.
 
 ## Triangle Classification
 
 The program uses two functions.
 
-**`is_valid_triangle()`** checks whether the side lengths are positive and satisfy the triangle inequality. If they don't form a valid triangle, it returns `False`.
+**`is_valid_triangle()`** returns `False` unless every side is positive and the two shorter sides together are longer than the longest side.
 
 **`classify_triangle()`** identifies the triangle type:
 
@@ -111,4 +111,4 @@ The customer requirement: customers enter three side lengths and are told the sh
 
 ## Conclusion
 
-This project helped me understand how triangle classification works and why software testing matters. I learned how to identify valid and invalid triangles, check boundary cases, and test different kinds of inputs. I also learned that AI-drafted tests can contain mistakes, such as a wrong expected value and a duplicated test name, so every test has to be checked against the spec, not accepted automatically.
+The most useful lesson was that tiny or very flat triangles can expose problems that ordinary test cases miss. I also found that AI-drafted tests need checking against the spec: mine had a wrong expected value and a duplicated test name, and neither showed up without a closer look.

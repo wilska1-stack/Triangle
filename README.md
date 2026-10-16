@@ -42,15 +42,15 @@ In a right triangle the Pythagorean theorem requires `a² + b² = c²`, where `c
 
 Boundaries tested: side = 0, the degenerate sum (`a + b = c`), and just inside it: `(1, 2, 2.999)` is valid because `1 + 2 > 2.999`.
 
-## Copilot Review Log
+## Claude Review Log
 
-No GitHub Copilot output was used in this project. Every test in `test_triangle.py` and `test_acceptance.py` was drafted by Claude (an AI assistant). The entries below record the review checks that were actually run.
+Every test in `test_triangle.py` and `test_acceptance.py` was drafted by Claude (an AI assistant). The entries below record the review checks that were actually run.
 
-| Test | Copilot-suggested? | Kept / edited / rejected | Why |
+| Test | Claude-suggested? | Kept / edited / rejected | Why |
 |---|---|---|---|
-| `test_right_triangle_with_non_integer_sides` | No (drafted by Claude) | Kept | Uses `5 * math.sqrt(2)`, which is not exact in floats. Checked by mutation: replacing the tolerance in `triangle.py` with `x*x + y*y == z*z` makes this test and `test_right_isosceles_with_unit_legs` fail, so it catches the `==` mistake. |
-| `test_triangle_inequality_failure` (duplicate name) | No (drafted by Claude) | Edited | Two tests in the file shared one name, so pytest would silently run only one. Caught with a duplicate-name check (`grep ... \| sort \| uniq -d`). Renamed the `is_valid_triangle` test to `test_is_valid_rejects_triangle_inequality_failure`. |
-| Spot check `(0.1+0.2, 0.4, 0.5)` | No (drafted by Claude) | Edited | Expected `Invalid`. Wrong: 0.3 + 0.4 > 0.5, so it is valid, and 0.09 + 0.16 = 0.25, so it is exactly right. Corrected the expectation to `Right Scalene`. |
+| `test_right_triangle_with_non_integer_sides` | Yes (drafted by Claude) | Kept | Uses `5 * math.sqrt(2)`, which is not exact in floats. Checked by mutation: replacing the tolerance in `triangle.py` with `x*x + y*y == z*z` makes this test and `test_right_isosceles_with_unit_legs` fail, so it catches the `==` mistake. |
+| `test_triangle_inequality_failure` (duplicate name) | Yes (drafted by Claude) | Edited | Two tests in the file shared one name, so pytest would silently run only one. Caught with a duplicate-name check (`grep ... \| sort \| uniq -d`). Renamed the `is_valid_triangle` test to `test_is_valid_rejects_triangle_inequality_failure`. |
+| Spot check `(0.1+0.2, 0.4, 0.5)` | Yes (drafted by Claude) | Edited | Expected `Invalid`. Wrong: 0.3 + 0.4 > 0.5, so it is valid, and 0.09 + 0.16 = 0.25, so it is exactly right. Corrected the expectation to `Right Scalene`. |
 
 ## Acceptance criteria (studio)
 
@@ -71,4 +71,4 @@ The studio's requirement: customers enter three side lengths and are told the sh
 - **Tool:** Claude (Anthropic), via Claude Code.
 - **Used for:** drafting `triangle.py`, the unit tests, the acceptance test and criteria, and this README.
 - **Verified by:** running `pytest` (28 unit tests, 1 acceptance test, all passing); a duplicate-test-name check; a mutation test that swaps the tolerance for exact `==`; checking the acceptance reference logic by hand against the spec table; probing non-numeric inputs to find the `TypeError` gap.
-- GitHub Copilot was not used.
+- No other AI tool was used.

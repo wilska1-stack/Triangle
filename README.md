@@ -116,7 +116,7 @@ The customer requirement: customers enter three side lengths and are told the sh
 
 ## AI-Use Disclosure
 
-I used Claude (Anthropic), through Claude Code, to draft `triangle.py`, the unit tests, the acceptance criteria and test, and this README. The Part 3 acceptance criteria and test were also drafted with Claude.
+I used Claude (Anthropic), through Claude Code, to draft `triangle.py`, the unit tests, the acceptance criteria and test, and this README. The Part 3 acceptance criteria and test were also drafted by me.
 
 I checked Claude's work by running `pytest` (17 unit tests and 1 acceptance test, all passing), looking for duplicate test names, running a mutation test that swapped the tolerance for exact `==`, checking the acceptance reference by hand against the spec table, and probing non-numeric inputs to find the `TypeError` gap.
 

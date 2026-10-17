@@ -117,7 +117,7 @@ The customer requirement: customers enter three side lengths and are told the sh
 ## AI-Use Disclosure
 
 - **Tool:** Claude (Anthropic), via Claude Code.
-- **Used for:** drafting `triangle.py`, the unit tests, the acceptance test and its criteria, and this README. Part 3 (the acceptance criteria and test) was drafted with Claude, as the student's instructor permitted for that part.
+- **Used for:** drafting `triangle.py`, the unit tests, the acceptance test and its criteria, and this README. The Part 3 acceptance criteria and test were also drafted with Claude.
 - **Verified by:** running `pytest` (17 unit tests and 1 acceptance test, all passing); a duplicate-test-name check; a mutation test that swaps the tolerance for exact `==`; checking the acceptance reference logic by hand against the spec table; and probing non-numeric inputs to find the `TypeError` gap.
 - No other AI tool was used.
 

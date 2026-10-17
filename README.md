@@ -120,7 +120,7 @@ I used Claude (Anthropic), through Claude Code, to draft `triangle.py`, the unit
 
 I checked Claude's work by running `pytest` (17 unit tests and 1 acceptance test, all passing), looking for duplicate test names, running a mutation test that swapped the tolerance for exact `==`, checking the acceptance reference by hand against the spec table, and probing non-numeric inputs to find the `TypeError` gap.
 
-I did not use any other AI tool.
+I used GitHub Copilot to suggest the Part 2 unit tests in `test_triangle.py`. I accepted, edited, or rejected each suggestion, as recorded in the Copilot Review Log above.
 
 ## Conclusion
 

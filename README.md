@@ -116,7 +116,9 @@ The customer requirement: customers enter three side lengths and are told the sh
 
 ## AI-Use Disclosure
 
-I used Claude (Anthropic) to draft `triangle.py`, the unit tests, the acceptance criteria and test, and this README. I used GitHub Copilot to suggest the Part 2 unit tests in `test_triangle.py`, and I accepted, edited, or rejected each one (see the Copilot Review Log).
+I used Claude (Anthropic) to help me understand the assignment, draft `triangle.py`, the unit tests, the acceptance criteria and test, and this README, and to review test results and correct bugs.
+
+I used GitHub Copilot to suggest the Part 2 unit tests in `test_triangle.py`. I checked each suggestion against the spec table and accepted, edited, or rejected it, as recorded in the Copilot Review Log. For example, I fixed the indentation and removed `== True` in one test, and changed the scalene test from (3, 4, 5), which is a right triangle, to (2, 3, 4).
 
 ## Conclusion
 

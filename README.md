@@ -9,7 +9,7 @@ Working on it gave me practice writing Python, choosing edge cases that are like
 ## Files in the Project
 
 - `triangle.py`: Contains the functions used to validate and classify triangles.
-- `test_triangle.py`: Contains unit tests for triangle classification and boundary cases (28 test cases).
+- `test_triangle.py`: Contains unit tests for triangle classification and boundary cases (17 test cases).
 - `test_acceptance.py`: Contains an acceptance test based on the customer's requirements (1 test case).
 - `requirements.txt`: Contains the pytest dependency (`pytest==9.1.1`).
 - `README.md`: Explains the project, testing process, and AI usage.
@@ -30,7 +30,7 @@ python3 -m pytest -v
 
 ## Test Results
 
-All 29 tests pass: 28 unit tests in `test_triangle.py` and 1 acceptance test in `test_acceptance.py`. The tests were run locally with pytest 9.1.1.
+All 18 tests pass: 17 unit tests in `test_triangle.py` and 1 acceptance test in `test_acceptance.py`. The tests were run locally with pytest 9.1.1.
 
 ## Equivalence Classes and Boundary Cases
 
@@ -118,7 +118,7 @@ The customer requirement: customers enter three side lengths and are told the sh
 
 - **Tool:** Claude (Anthropic), via Claude Code.
 - **Used for:** drafting `triangle.py`, the unit tests, the acceptance test and its criteria, and this README.
-- **Verified by:** running `pytest` (28 unit tests and 1 acceptance test, all passing); a duplicate-test-name check; a mutation test that swaps the tolerance for exact `==`; checking the acceptance reference logic by hand against the spec table; and probing non-numeric inputs to find the `TypeError` gap.
+- **Verified by:** running `pytest` (17 unit tests and 1 acceptance test, all passing); a duplicate-test-name check; a mutation test that swaps the tolerance for exact `==`; checking the acceptance reference logic by hand against the spec table; and probing non-numeric inputs to find the `TypeError` gap.
 - No other AI tool was used.
 
 ## Conclusion

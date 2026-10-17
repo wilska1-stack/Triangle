@@ -76,17 +76,29 @@ The right-angle check sorts the sides and compares the two shorter sides' square
 
 In a right triangle, the Pythagorean theorem requires `a² + b² = c²`, where `c` is the hypotenuse. An equilateral triangle has `a = b = c`, so the condition becomes `a² + a² = a²`, which reduces to `a² = 0`. That is impossible for a side with positive length. The code returns `"Equilateral"` for these inputs and never adds the `"Right "` prefix.
 
-## Claude Review Log
+## Copilot Review Log
 
-For this assignment, I used Claude (an AI assistant) to draft the tests and to review them. I checked each one against the spec table, not against what the code returned.
+I used GitHub Copilot to draft the 17 unit tests in `test_triangle.py`. I accepted, edited, or rejected each suggestion by checking it against the spec table, not against what the code returned.
 
-| Test | Claude-Suggested? | Decision | Explanation |
+| Test | Copilot-Suggested? | Decision | Explanation |
 |---|---|---|---|
-| `test_right_triangle_with_non_integer_sides` | Yes | Kept | Uses `5 * math.sqrt(2)`. I checked it by mutation: replacing the tolerance in `triangle.py` with exact `==` makes this test and `test_right_isosceles_with_unit_legs` fail. |
-| `test_is_valid_rejects_triangle_inequality_failure` (duplicate name) | Yes | Edited | Two tests in the file had the same name, so pytest would silently run only one. A duplicate-name check caught it. I renamed the `is_valid_triangle` test. |
-| Spot check `(0.1 + 0.2, 0.4, 0.5)` | Yes | Edited | Claude's first expectation was `Invalid`. That was wrong: 0.3 + 0.4 > 0.5, so it is valid, and 0.09 + 0.16 = 0.25, so it is exactly right. I corrected the expectation to `Right Scalene`. |
-| `test_equilateral_is_never_labelled_right` | Yes | Kept | Checks that equilateral triangles of several sizes, including 0.001, return `"Equilateral"` and never a right-angle label. |
-| `test_just_under_degenerate_is_valid` | Yes | Kept | Checks the boundary just inside the degenerate case: `(1, 2, 2.999)` is valid. |
+| `test_valid_triangles_are_valid` | Yes | Edited | Fixed the indentation so the assert sits inside the function, and removed `== True`. |
+| `test_side_zero_or_negative_is_invalid` | Yes | Kept | `(0, 1, 1)` is invalid because a side is zero. |
+| `test_is_valid_rejects_triangle_inequality_failure` | Yes | Kept | `(1, 1, 3)`: 1 + 1 is less than 3, so it is invalid. |
+| `test_any_side_zero_or_negative_is_invalid` | Yes | Kept | `classify_triangle(0, 1, 1)` returns `"Invalid"`. |
+| `test_triangle_inequality_failure_is_invalid` | Yes | Kept | `classify_triangle(1, 1, 3)` returns `"Invalid"`. |
+| `test_all_sides_equal_is_equilateral` | Yes | Kept | `(2, 2, 2)` is equilateral. |
+| `test_exactly_two_sides_equal_is_isosceles` | Yes | Kept | `(2, 2, 3)` is isosceles. |
+| `test_all_sides_different_is_scalene` | Yes | Edited | Copilot's `(3, 4, 5)` is a right triangle, so it returns `"Right Scalene"`, not `"Scalene"`. Changed to `(2, 3, 4)`, which has all sides different and no right angle. |
+| `test_pythagorean_triple_is_right_scalene` | Yes | Kept | `(3, 4, 5)` returns `"Right Scalene"`. |
+| `test_right_triangle_with_non_integer_sides` | Yes | Kept | `(5, 5, 5√2)` returns `"Right Isosceles"`. This uses a tolerance, not `==`. |
+| `test_right_isosceles_with_unit_legs` | Yes | Kept | `(1, 1, √2)` returns `"Right Isosceles"`. |
+| `test_right_check_does_not_depend_on_side_order` | Yes | Kept | `(5√2, 5, 5)` returns `"Right Isosceles"`, so the hypotenuse can be listed first. |
+| `test_degenerate_sum_equal_to_third_side_is_invalid` | Yes | Kept | `(1, 2, 3)` is degenerate, so it is invalid. |
+| `test_degenerate_is_invalid_in_any_position` | Yes | Kept | `(1, 3, 2)` is degenerate, so it is invalid. |
+| `test_just_under_degenerate_is_valid` | Yes | Kept | `(1, 2, 2.999)` is valid and scalene. |
+| `test_equilateral_is_never_labelled_right` | Yes | Kept | `(1, 1, 1)` returns `"Equilateral"`, never a right-angle label. |
+| `test_near_right_outside_tolerance_is_not_right` | Yes | Kept | `(3, 4, 5.001)` is outside the tolerance, so it is scalene. |
 
 ## Acceptance Criteria (Stained-Glass Studio)
 
